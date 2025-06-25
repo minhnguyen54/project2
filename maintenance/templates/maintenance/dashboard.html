@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Maintenance Dashboard</title>
@@ -9,6 +10,7 @@
             background-color: #f8f9fa;
             padding: 30px;
         }
+
         .chart-img {
             max-width: 100%;
             height: auto;
@@ -17,17 +19,37 @@
             padding: 10px;
             background-color: white;
         }
-        h1, h2, h3 {
+
+        h1,
+        h2,
+        h3 {
             margin-top: 2rem;
         }
-        table th, table td {
+
+        table th,
+        table td {
             vertical-align: middle;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1 class="text-center mb-4">Maintenance Dashboard</h1>
+
+        <h2>Import CSV</h2>
+        <form method="post" enctype="multipart/form-data" class="mb-4">
+            {% csrf_token %}
+            {{ form.file }}
+            <button type="submit" class="btn btn-secondary ms-2">Upload</button>
+        </form>
+
+        {% if messages %}
+        {% for message in messages %}
+        <p style="color: green;">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+
 
         <form method="get" class="row g-3 mb-4">
             <div class="col-md-4">
@@ -44,12 +66,14 @@
 
             <div class="col-md-3">
                 <label for="start_date" class="form-label">Start Date</label>
-                <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}" class="form-control">
+                <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}"
+                    class="form-control">
             </div>
 
             <div class="col-md-3">
                 <label for="end_date" class="form-label">End Date</label>
-                <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}" class="form-control">
+                <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}"
+                    class="form-control">
             </div>
 
             <div class="col-md-4">
@@ -126,4 +150,5 @@
         </div>
     </div>
 </body>
+
 </html>
