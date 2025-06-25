@@ -36,6 +36,19 @@
 <body>
     <div class="container">
         <h1 class="text-center mb-4">Maintenance Dashboard</h1>
+        <h2>Ask the Maintenance AI</h2>
+        <form method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="ask_ai" class="form-control"
+                    placeholder="Ask a question about your car maintenance...">
+                <button type="submit" class="btn btn-success">Ask</button>
+            </div>
+        </form>
+        {% if ai_response %}
+        <div class="alert alert-info mt-3">
+            <strong>AI says:</strong> {{ ai_response }}
+        </div>
+        {% endif %}
 
         <h2>Import CSV</h2>
         <form method="post" enctype="multipart/form-data" class="mb-4">
@@ -49,7 +62,6 @@
         <p style="color: green;">{{ message }}</p>
         {% endfor %}
         {% endif %}
-
 
         <form method="get" class="row g-3 mb-4">
             <div class="col-md-4">
